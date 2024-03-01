@@ -1,0 +1,218 @@
+<app-header></app-header>
+<style>
+    .intro-section {
+      text-align: center;
+      color: #fff;
+      padding: 20px;
+    }
+    .search-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .product-catetory {
+      width: 200px;
+    }
+    .search-input {
+      width: 300px;
+      background-color: rgb(19, 24, 43);
+      margin-right: 10px;
+      border-color: rgba(255, 255, 255, 0.5);
+      color: #fff;
+      /* margin-bottom: 20px; */
+    }
+    .form-control {
+      background-color: transparent;
+      color: #fff;
+    }
+    .form-control::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+      opacity: 1;
+    }
+    .product-item {
+      background-color: rgb(19, 23, 42);
+      border: 1px solid rgb(35, 39, 61);
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .product-image {
+      width: 100%;
+      height: auto;
+      margin-bottom: 10px;
+    }
+    .product-name {
+      color: #fff;
+    }
+    .product-description {
+      color: rgb(173, 178, 203);
+    }
+    .product-warranty {
+      color: rgb(242, 116, 212);
+    }
+    .product-price {
+      color: #fff;
+    }
+    .product-rating {
+      color: #ffd700;
+      margin-top: 10px;
+    }
+    .product-action {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .space-x {
+      margin: 0 5px;
+    }
+  </style>
+  
+  <div class="container">
+    <div class="intro-section">
+      <h1>Đây là trang Home</h1>
+      <p>Trang này hiển thị danh sách các sản phẩm, kèm ảnh</p>
+      <p>Các bạn có thể chọn xem sản phẩm và mua hàng tại đây</p>
+    </div>
+    <!-- Có 1 ô search box bên trái, 1 combobox bên phải -->
+    <div class="search-box">
+      <input
+        type="text"
+        class="form-control search-input"
+        placeholder="Tìm sản phẩm"
+      />
+      <select name="" id="" class="form-control product-catetory">
+        <option value="" selected disabled>Danh mục sản phẩm</option>
+        <option value="">Đồ điện tử</option>
+        <option value="">Hải sản</option>
+        <option value="">Bánh kẹo</option>
+      </select>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-md-6">
+        <div class="product-item">
+          <img
+            src="https://images.pexels.com/photos/4050426/pexels-photo-4050426.jpeg?auto=compress&cs=tinysrgb&w=800"
+            alt="Product image"
+            class="product-image"
+          />
+          <h3 class="product-name">Product 1</h3>
+          <p class="product-description">Lorem ispum dolor sit amen</p>
+          <p class="product-warranty">Bảo hành 12 tháng</p>
+          <p class="product-price">Giá: <del>$200</del> $100</p>
+          <div class="product-rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-regular fa-star-half-stroke"></i>
+          </div>
+          <div class="product-action">
+            <button class="btn btn-primary">Thêm vào giỏ hàng</button>
+            <span class="space-x"></span>
+            <button class="btn btn-success">Mua ngay</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="product-item">
+          <img
+            src="https://images.pexels.com/photos/4050426/pexels-photo-4050426.jpeg?auto=compress&cs=tinysrgb&w=800"
+            alt="Product image"
+            class="product-image"
+          />
+          <h3 class="product-name">Product 1</h3>
+          <p class="product-description">Lorem ispum dolor sit amen</p>
+          <p class="product-warranty">Bảo hành 12 tháng</p>
+          <p class="product-price">Giá: <del>$200</del> $100</p>
+          <div class="product-rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-regular fa-star-half-stroke"></i>
+          </div>
+          <div class="product-action">
+            <button class="btn btn-primary">Thêm vào giỏ hàng</button>
+            <span class="space-x"></span>
+            <button class="btn btn-success">Mua ngay</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="product-item">
+          <img
+            src="https://images.pexels.com/photos/4050426/pexels-photo-4050426.jpeg?auto=compress&cs=tinysrgb&w=800"
+            alt="Product image"
+            class="product-image"
+          />
+          <h3 class="product-name">Product 1</h3>
+          <p class="product-description">Lorem ispum dolor sit amen</p>
+          <p class="product-warranty">Bảo hành 12 tháng</p>
+          <p class="product-price">Giá: <del>$200</del> $100</p>
+          <div class="product-rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-regular fa-star-half-stroke"></i>
+          </div>
+          <div class="product-action">
+            <button class="btn btn-primary">Thêm vào giỏ hàng</button>
+            <span class="space-x"></span>
+            <button class="btn btn-success">Mua ngay</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="product-item">
+          <img
+            src="https://images.pexels.com/photos/4050426/pexels-photo-4050426.jpeg?auto=compress&cs=tinysrgb&w=800"
+            alt="Product image"
+            class="product-image"
+          />
+          <h3 class="product-name">Product 1</h3>
+          <p class="product-description">Lorem ispum dolor sit amen</p>
+          <p class="product-warranty">Bảo hành 12 tháng</p>
+          <p class="product-price">Giá: <del>$200</del> $100</p>
+          <div class="product-rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-regular fa-star-half-stroke"></i>
+          </div>
+          <div class="product-action">
+            <button class="btn btn-primary">Thêm vào giỏ hàng</button>
+            <span class="space-x"></span>
+            <button class="btn btn-success">Mua ngay</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="product-item">
+          <img
+            src="https://images.pexels.com/photos/4050426/pexels-photo-4050426.jpeg?auto=compress&cs=tinysrgb&w=800"
+            alt="Product image"
+            class="product-image"
+          />
+          <h3 class="product-name">Product 1</h3>
+          <p class="product-description">Lorem ispum dolor sit amen</p>
+          <p class="product-warranty">Bảo hành 12 tháng</p>
+          <p class="product-price">Giá: <del>$200</del> $100</p>
+          <div class="product-rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-regular fa-star-half-stroke"></i>
+          </div>
+          <div class="product-action">
+            <button class="btn btn-primary">Thêm vào giỏ hàng</button>
+            <span class="space-x"></span>
+            <button class="btn btn-success">Mua ngay</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<app-footer></app-footer>
