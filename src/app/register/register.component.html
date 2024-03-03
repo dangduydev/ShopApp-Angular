@@ -6,21 +6,21 @@
         <div class="register-form mx-auto">
           <h2 class="register-header">Đăng ký</h2>
           <div class="form-group">
-            <label for="phone">Phone</label>
+            <label for="phoneNumber">Phone's number</label>
             <input
               name="phone"
               type="text"
               class="form-control"
-              [(ngModel)]="phone"
-              (input)="onPhoneChange()"
+              [(ngModel)]="phoneNumber"
+              (input)="onPhoneNumberChange()"
               (focus)="registerForm.form.markAsTouched()"
               required=""
-              id="phone"
+              id="phoneNumber"
             />
             <div class="divider-nospace"></div>
             <p
               class="text-danger"
-              *ngIf="phone.length < 6 && registerForm.touched"
+              *ngIf="phoneNumber.length < 6 && registerForm.touched"
             >
               Phone phải có ít nhất 6 ký tự
             </p>
@@ -50,8 +50,8 @@
           <div class="form-group password-field">
             <label for="retype-password">Gõ lại mật khẩu</label>
             <input
-              type="password"
               name="retypePassword"
+              type="password"
               [(ngModel)]="retypePassword"
               placeholder="Ít nhất 3 ký tự"
               required
@@ -82,6 +82,7 @@
           <div class="form-group">
             <label for="full-name">Họ và tên</label>
             <input
+              name="fullname"
               type="text"
               [(ngModel)]="fullname"
               class="form-control"
@@ -94,8 +95,8 @@
           <div class="form-group">
             <label for="date-of-birth">Ngày tháng năm sinh</label>
             <input
-              type="date"
               name="dateOfBirth"
+              type="date"
               class="form-control"
               id="date-of-birth"
               required
@@ -118,6 +119,7 @@
           <div class="form-group">
             <label for="address">Địa chỉ</label>
             <input
+              name="address"
               type="text"
               [(ngModel)]="address"
               class="form-control"
@@ -129,6 +131,7 @@
             <div class="form-check checkbox-text">
               <span style="display: flex">
                 <input
+                  name="isAccepted"
                   type="checkbox"
                   [(ngModel)]="isAccepted"
                   class="form-check-input"
