@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { RegisterDTO } from '../dtos/user/register.dto';
 import { LoginDTO } from '../dtos/user/login.dto';
-import { environment } from '../app/environments/environment';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +19,7 @@ export class UserService {
   private createHeaders(): HttpHeaders {
     return new HttpHeaders({
       'Content-Type': 'application/json',
+      'Accept-Language': 'vi',
     });
   }
 
