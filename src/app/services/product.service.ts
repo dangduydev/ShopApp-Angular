@@ -28,4 +28,5 @@ export class ProductService {
   getDetailProduct(productId: number) {
     return this.http.get(`${environment.apiBaseUrl}/products/${productId}`);
   }
+  
 }

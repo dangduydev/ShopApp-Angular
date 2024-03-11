@@ -3,12 +3,11 @@ import { FooterComponent } from '../footer/footer.component';
 import { HeaderComponent } from '../header/header.component';
 import { Product } from '../../models/product';
 import { ProductService } from '../../services/product.service';
-import { CategoryService } from '../../services/category.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductImage } from '../../models/product.image';
 import { environment } from '../../environments/environment';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-detail-product',
@@ -21,11 +20,15 @@ export class DetailProductComponent implements OnInit {
   product?: Product;
   productId: number = 0;
   currentImageIndex: number = 0;
+  isPressedAddToCart: boolean = false;
+  quantity: number = 1;
   constructor(
-    private productService: ProductService // private categoryService: CategoryService, // private router: Router, // private activatedRoute: ActivatedRoute
+    private productService: ProductService, // private categoryService: CategoryService, // private router: Router, // private activatedRoute: ActivatedRoute
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
+    // this.cartService.clearCart();
     //lấy productId từ URL
     debugger;
     const idParam = 5; //fake tạm 1 giá trị
@@ -101,4 +104,31 @@ export class DetailProductComponent implements OnInit {
     debugger;
     this.showImage(this.currentImageIndex - 1);
   }
+  addToCart(): void {
+    debugger;
+    this.isPressedAddToCart = true;
+    if (this.product) {
+      //đây là id fake để test => this.product.id
+      this.cartService.addToCart(this.productId, this.quantity);
+    } else {
+      // Xử lý khi product là null
+      console.error('Không thể thêm sản phẩm vào giỏ hàng vì product là null.');
+    }
+  }
+  increaseQuantity(): void {
+    // debugger;
+    this.quantity++;
+  }
+
+  decreaseQuantity(): void {
+    if (this.quantity > 1) {
+      this.quantity--;
+    }
+  }
+  buyNow(): void {      
+    // if(this.isPressedAddToCart == false) {
+    //   this.addToCart();
+    // }
+    // this.router.navigate(['/orders']);
+  }  
 }
