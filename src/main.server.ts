@@ -8,6 +8,6 @@ import { DetailProductComponent } from './app/components/detail-product/detail-p
 import { config } from './app/app.config.server';
 import { FormsModule } from '@angular/forms';
 
-const bootstrap = () => bootstrapApplication(DetailProductComponent, config);
+const bootstrap = () => bootstrapApplication(OrderConfirmComponent, config);
 
 export default bootstrap;

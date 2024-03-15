@@ -9,6 +9,7 @@ import { Product } from '../models/product';
 })
 export class ProductService {
   private apiGetProducts = `${environment.apiBaseUrl}/products`;
+  private apiBaseUrl = environment.apiBaseUrl;
 
   constructor(private http: HttpClient) {}
 
@@ -27,6 +28,10 @@ export class ProductService {
   }
   getDetailProduct(productId: number) {
     return this.http.get(`${environment.apiBaseUrl}/products/${productId}`);
+  }
+  getProductsByIds(productIds: number[]): Observable<Product[]> {
+    const params = new HttpParams().set('ids', productIds.join(','));
+    return this.http.get<Product[]>(`${this.apiBaseUrl}/products/by-ids`, { params });
   }
   
 }
