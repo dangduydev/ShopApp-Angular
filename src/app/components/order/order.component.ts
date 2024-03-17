@@ -3,29 +3,40 @@ import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 import { Product } from '../../models/product';
 import { OrderDTO } from '../../dtos/order/order.dto';
-import { FormGroup, FormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  Validators,
+} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../services/cart.service';
 import { ProductService } from '../../services/product.service';
 import { OrderService } from '../../services/order.service';
-import { environment } from '../../environments/environment';
-import { error } from 'console';
+import { environment } from '../../../environments/environment';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-order',
   standalone: true,
   templateUrl: './order.component.html',
   styleUrl: './order.component.scss',
-  imports: [FooterComponent, HeaderComponent, FormsModule, CommonModule],
+  imports: [
+    FooterComponent,
+    HeaderComponent,
+    FormsModule,
+    CommonModule,
+    ReactiveFormsModule,
+  ],
 })
 export class OrderComponent implements OnInit {
-  // orderForm: FormGroup;
+  orderForm: FormGroup; // Đối tượng FormGroup để quản lý dữ liệu của form
   cartItems: { product: Product; quantity: number }[] = [];
   couponCode: string = '';
   totalAmount: number = 0;
 
   orderData: OrderDTO = {
-    user_id: 1, // Thay bằng user_id thích hợp
+    user_id: 2, // Thay bằng user_id thích hợp
     fullname: '', // Khởi tạo rỗng, sẽ được điền từ form
     email: '', // Khởi tạo rỗng, sẽ được điền từ form
     phone_number: '', // Khởi tạo rỗng, sẽ được điền từ form
@@ -41,8 +52,20 @@ export class OrderComponent implements OnInit {
   constructor(
     private cartService: CartService,
     private productService: ProductService,
-    protected orderService: OrderService
-  ) {}
+    protected orderService: OrderService,
+    private formBuilder: FormBuilder
+  ) {
+    // Tạo FormGroup và các FormControl tương ứng
+    this.orderForm = this.formBuilder.group({
+      fullname: ['', Validators.required], // fullname là FormControl bắt buộc
+      email: ['', [Validators.email]], // Sử dụng Validators.email cho kiểm tra định dạng email
+      phone_number: ['', [Validators.required, Validators.minLength(6)]], // phone_number bắt buộc và ít nhất 6 ký tự
+      address: ['', [Validators.required, Validators.minLength(5)]], // address bắt buộc và ít nhất 5 ký tự
+      note: [''],
+      shipping_method: ['express'],
+      payment_method: ['cod'],
+    });
+  }
 
   ngOnInit(): void {
     // Lấy sản phẩm từ giỏ hàng
@@ -67,33 +90,60 @@ export class OrderComponent implements OnInit {
             quantity: cart.get(productId)!,
           };
         });
-        console.log('...');
+        console.log('haha');
       },
       complete: () => {
         debugger;
         this.calculateTotal();
       },
-      error: () => {
+      error: (error: any) => {
         debugger;
-        console.log('Error fetching detail: ', error);
+        console.error('Error fetching detail:', error);
       },
     });
   }
   placeOrder() {
-    this.orderService.placeOrder(this.orderData).subscribe({
-      next: (response) => {
-        debugger;
-        console.log('Đặt hàng thành công');
-      },
-      complete: () => {
-        debugger;
-        this.calculateTotal();
-      },
-      error: () => {
-        debugger;
-        console.error('Lỗi khi đặt hàng', error);
-      },
-    });
+    debugger;
+    if (this.orderForm.errors == null) {
+      // Gán giá trị từ form vào đối tượng orderData
+      /*
+      this.orderData.fullname = this.orderForm.get('fullname')!.value;
+      this.orderData.email = this.orderForm.get('email')!.value;
+      this.orderData.phone_number = this.orderForm.get('phone_number')!.value;
+      this.orderData.address = this.orderForm.get('address')!.value;
+      this.orderData.note = this.orderForm.get('note')!.value;
+      this.orderData.shipping_method = this.orderForm.get('shipping_method')!.value;
+      this.orderData.payment_method = this.orderForm.get('payment_method')!.value;
+      */
+      // Sử dụng toán tử spread (...) để sao chép giá trị từ form vào orderData
+      this.orderData = {
+        ...this.orderData,
+        ...this.orderForm.value,
+      };
+      this.orderData.cart_items = this.cartItems.map((cartItem) => ({
+        product_id: cartItem.product.id,
+        quantity: cartItem.quantity,
+      }));
+      this.orderData.total_money = this.totalAmount;
+      // Dữ liệu hợp lệ, bạn có thể gửi đơn hàng đi
+      this.orderService.placeOrder(this.orderData).subscribe({
+        next: (response) => {
+          debugger;
+          alert('Đặt hàng thành công');
+        },
+        complete: () => {
+          debugger;
+          this.calculateTotal();
+        },
+        error: (error: any) => {
+          debugger;
+          alert(`Lỗi khi đặt hàng: ${error}`);
+        },
+      });
+    } else {
+      // Hiển thị thông báo lỗi hoặc xử lý khác
+      alert('Dữ liệu không hợp lệ. Vui lòng kiểm tra lại.');
+    }
   }
 
   // Hàm tính tổng tiền

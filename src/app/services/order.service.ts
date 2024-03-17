@@ -6,7 +6,7 @@ import {
   HttpHeaders 
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 import { OrderDTO } from '../dtos/order/order.dto';
 import { OrderResponse } from '../responses/order/order.response';
 

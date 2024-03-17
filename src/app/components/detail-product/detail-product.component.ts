@@ -5,7 +5,7 @@ import { Product } from '../../models/product';
 import { ProductService } from '../../services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductImage } from '../../models/product.image';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../services/cart.service';
 
